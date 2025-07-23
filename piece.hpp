@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+using namespace std;
+
 enum class Type {X, O, None};
 
 class Piece {
@@ -11,10 +13,13 @@ class Piece {
 
         Piece ();
         Type getType ();
+        void setType (Type t);
+        void setAge (int n);
 
     private:
 
-        Type type;
+        Type _type;
+        int age;
 
 };
 

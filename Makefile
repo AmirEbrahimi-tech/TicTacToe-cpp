@@ -2,7 +2,7 @@ CXX = g++
 CXX_FLAGS = -Wall -std=c++11
 LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
 
-OBJ = grille.o
+OBJ = grille.o piece.o
 
 MAIN_OBJ = main.o $(OBJ)
 TEST_OBJ = test.o $(OBJ)
