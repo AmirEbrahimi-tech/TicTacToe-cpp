@@ -15,6 +15,8 @@ class Piece {
         Type getType ();
         void setType (Type t);
         void setAge (int n);
+        bool operator==(Piece& p) const;
+        bool operator!=(Piece& p) const;
 
     private:
 

@@ -3,6 +3,7 @@
 
 #include <random>
 #include <iostream>
+#include "piece.hpp"
 
 using namespace std;
 
@@ -12,14 +13,14 @@ class Grille {
 
         Grille ();
         void affichage ();
-        void setInt (int lig, int col, int val);
+        void setInt (int lig, int col, Type t);
         void input ();
         bool partieFinie ();
 
     private :
 
         // vector<vector<int>> grille;
-        int grille[3][3];
+        Piece grille[3][3];
 };
 
 Grille testGrilleGagnantLigne ();
