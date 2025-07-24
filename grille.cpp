@@ -18,9 +18,9 @@ void Grille::affichage () {
         cout << "-------------" << endl;
         for (int j = 0 ; j < 3 ; j++) {
             switch (grille[i][j].getType()) {
-                case Type::None : cout << "|   "; break;
-                case Type::O : cout << "| O "; break;
-                case Type::X : cout << "| X "; break;
+                case Type::None : cout << "| " << i * 3 + j + 1 <<" "; break;
+                case Type::O : cout << "|\033[1;31m O \033[0m"; break;
+                case Type::X : cout << "|\033[1;34m X \033[0m"; break;
             }
         }
         cout << "|" << endl;
@@ -30,7 +30,7 @@ void Grille::affichage () {
 
 void Grille::setPiece (int row, int col, Type t) {
     grille[row][col].setType(t);
-    grille[row][col].setAge(7);
+    grille[row][col].setAge(8);
 }
 
 Piece Grille::getPiece (int row, int col) {

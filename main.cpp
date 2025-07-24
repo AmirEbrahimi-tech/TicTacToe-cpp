@@ -88,6 +88,23 @@ int main () {
 
     // third test
 
+    // Grille test;
+    // test.affichage();
+    // test.getStatus();
+    // int i = 0;
+    // do {
+    //     if (i % 2 == 0) test.setOneRandomPiece(Type::O);
+    //     else test.setOneRandomPiece(Type::X);
+    //     test.affichage();
+    //     test.getStatus();
+    //     i++;
+    //     test.setAllPieces ();
+    // } while (!test.partieFinie());
+    // cout << "took " << i << " rounds" << endl;
+    // cout << "DONE!" << endl;
+
+    // fourth test
+
     Grille test;
     test.affichage();
     test.getStatus();
@@ -95,10 +112,10 @@ int main () {
     do {
         if (i % 2 == 0) test.setOneRandomPiece(Type::O);
         else test.setOneRandomPiece(Type::X);
+        test.setAllPieces ();
         test.affichage();
         test.getStatus();
         i++;
-        test.setAllPieces ();
     } while (!test.partieFinie());
     cout << "took " << i << " rounds" << endl;
     cout << "DONE!" << endl;
