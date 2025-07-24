@@ -41,45 +41,67 @@
 
 
 int main () {
+    // first test
+
     // Grille test;
     // test.input();
     // test.input();
     // test.input();
 
     // test.affichage();
-    Grille test1 = testGrilleGagnantLigne();
-    Grille test2 = testGrilleGagnantColonne();
-    Grille test3 = testGrilleGagnantDiagonale();
-    Grille test4 = testGrille();
-    Grille test5 = testGrille();
-    Grille test6 = testGrille();
-    Grille test7 = testGrille();
-    Grille test8 = testGrille();
 
-    test1.affichage();
-    test2.affichage();
-    test3.affichage();
-    test4.affichage();
-    test5.affichage();
-    test6.affichage();
-    test7.affichage();
-    test8.affichage();
-    if (test1.partieFinie()) cout << "yay" << endl;
-    else cout << "nay" << endl;
-    if (test2.partieFinie()) cout << "yay" << endl;
-    else cout << "nay" << endl;
-    if (test3.partieFinie()) cout << "yay" << endl;
-    else cout << "nay" << endl;
-    if (test4.partieFinie()) cout << "yay" << endl;
-    else cout << "nay" << endl;
-    if (test5.partieFinie()) cout << "yay" << endl;
-    else cout << "nay" << endl;
-    if (test6.partieFinie()) cout << "yay" << endl;
-    else cout << "nay" << endl;
-    if (test7.partieFinie()) cout << "yay" << endl;
-    else cout << "nay" << endl;
-    if (test8.partieFinie()) cout << "yay" << endl;
-    else cout << "nay" << endl;
+    // second test
+
+    // Grille test1 = testGrilleGagnantLigne();
+    // Grille test2 = testGrilleGagnantColonne();
+    // Grille test3 = testGrilleGagnantDiagonale();
+    // Grille test4 = testGrille();
+    // Grille test5 = testGrille();
+    // Grille test6 = testGrille();
+    // Grille test7 = testGrille();
+    // Grille test8 = testGrille();
+
+    // test1.affichage();
+    // test2.affichage();
+    // test3.affichage();
+    // test4.affichage();
+    // test5.affichage();
+    // test6.affichage();
+    // test7.affichage();
+    // test8.affichage();
+    // if (test1.partieFinie()) cout << "yay" << endl;
+    // else cout << "nay" << endl;
+    // if (test2.partieFinie()) cout << "yay" << endl;
+    // else cout << "nay" << endl;
+    // if (test3.partieFinie()) cout << "yay" << endl;
+    // else cout << "nay" << endl;
+    // if (test4.partieFinie()) cout << "yay" << endl;
+    // else cout << "nay" << endl;
+    // if (test5.partieFinie()) cout << "yay" << endl;
+    // else cout << "nay" << endl;
+    // if (test6.partieFinie()) cout << "yay" << endl;
+    // else cout << "nay" << endl;
+    // if (test7.partieFinie()) cout << "yay" << endl;
+    // else cout << "nay" << endl;
+    // if (test8.partieFinie()) cout << "yay" << endl;
+    // else cout << "nay" << endl;
+
+    // third test
+
+    Grille test;
+    test.affichage();
+    test.getStatus();
+    int i = 0;
+    do {
+        if (i % 2 == 0) test.setOneRandomPiece(Type::O);
+        else test.setOneRandomPiece(Type::X);
+        test.affichage();
+        test.getStatus();
+        i++;
+        test.setAllPieces ();
+    } while (!test.partieFinie());
+    cout << "took " << i << " rounds" << endl;
+    cout << "DONE!" << endl;
     
 
     return 0;

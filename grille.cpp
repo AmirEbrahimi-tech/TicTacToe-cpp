@@ -28,20 +28,44 @@ void Grille::affichage () {
     cout << "-------------" << endl;
 }
 
-void Grille::setInt (int lig, int col, Type t) {
-    grille[lig][col].setType(t);
+void Grille::setPiece (int row, int col, Type t) {
+    grille[row][col].setType(t);
+    grille[row][col].setAge(7);
+}
+
+Piece Grille::getPiece (int row, int col) {
+    return grille[row][col];
+}
+
+int Grille::numPiece (Type t) {
+    int counter = 0;
+    for ( int i = 0 ; i < 3 ; i++) {
+        for (int j = 0 ; j < 3 ; j++) {
+            if (grille[i][j].getType() == t) counter++;
+        }
+    }
+    return counter;
+}
+
+void Grille::setAllPieces () {
+    for (int i = 0 ; i < 3 ; i++) {
+        for (int j = 0 ; j < 3 ; j++) {
+            if (grille[i][j].getAge() == 0) continue;
+            else grille[i][j].loseAge();
+        }
+    }
 }
 
 void Grille::input () {
-    int lig, col, val;
+    int row, col, val;
     cout << "entrez l'emplacement" << endl;
-    cin >> lig >> col;
+    cin >> row >> col;
     cout << "entrez un entier entre 1 et 2" << endl;
     cin >> val;
     switch (val) {
-        case 0 : grille[lig][col].setType(Type::None); break;
-        case 1 : grille[lig][col].setType(Type::O); break;
-        case 2 : grille[lig][col].setType(Type::X); break;
+        case 0 : grille[row][col].setType(Type::None); break;
+        case 1 : grille[row][col].setType(Type::O); break;
+        case 2 : grille[row][col].setType(Type::X); break;
     }
 }
 
@@ -65,27 +89,89 @@ bool Grille::partieFinie () {
     return false;
 }
 
+// void Grille::setOneRandomPiece () {
+//     bool done = false;
+//     random_device rd;
+//     mt19937 gen(rd());
+//     uniform_int_distribution<> distrib(0, 2);
+//     int emptyCells = 0;
+//     while (!done) {
+//         emptyCells = 0;
+//                 if (getPiece(i, j).getType() != Type::None) continue;
+//                 switch(distrib(gen)) {
+//                     case 1 : setPiece(i, j, Type::O); done = true; break;
+//                     case 2 : setPiece(i, j, Type::X); done = true; break;
+//                     default : break;
+//                 }
+//                 if (done) break;
+//             }
+//             if (done) break;
+//         }
+//         if (emptyCells == 0) break; // No empty cells, exit to avoid infinite loop
+//     }
+// }
+
+void Grille::setOneRandomPiece (Type t) {
+    if (numPiece(Type::None) == 0) return;
+    bool done = false;
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distribCase (0, 8);
+    uniform_int_distribution<> distribType (0, 2);
+    while (!done) {
+        int tmpCase = distribCase(gen);
+        int row = tmpCase / 3;
+        int col = tmpCase % 3;
+        if (grille[row][col].getType() != Type::None) {
+            continue;
+        } else {
+            // int tmpType = distribType(gen);
+            // switch (tmpType) {
+            //     case 1 : setPiece(row, col, Type::O) ; done = true; break;
+            //     case 2 : setPiece(row, col, Type::X) ; done = true; break;
+            //     default : break;
+            // }
+            setPiece(row, col, t);
+            done = true;
+        }
+    }
+}
+
+void Grille::getStatus () {
+    for (int i = 0 ; i < 3 ; i++) {
+        for (int  j = 0 ; j < 3 ; j++) {
+            cout << "case " << i << " - " << j << " : ";
+            switch (grille[i][j].getType()) {
+                case Type::None : cout << "None" ; break;
+                case Type::O : cout << "O" ; break;
+                case Type::X : cout << "X" ; break;
+            }
+            cout << " age : " << grille[i][j].getAge() << endl;
+        }
+    }
+}
+
 Grille testGrilleGagnantLigne () {
     Grille test;
-    test.setInt(0,0,Type::O);
-    test.setInt(0,1,Type::O);
-    test.setInt(0,2,Type::O);
+    test.setPiece(0,0,Type::O);
+    test.setPiece(0,1,Type::O);
+    test.setPiece(0,2,Type::O);
     return test;
 }
 
 Grille testGrilleGagnantColonne () {
     Grille test;
-    test.setInt(0,0,Type::O);
-    test.setInt(1,0,Type::O);
-    test.setInt(2,0,Type::O);
+    test.setPiece(0,0,Type::O);
+    test.setPiece(1,0,Type::O);
+    test.setPiece(2,0,Type::O);
     return test;
 }
 
 Grille testGrilleGagnantDiagonale () {
     Grille test;
-    test.setInt(0,0,Type::O);
-    test.setInt(1,1,Type::O);
-    test.setInt(2,2,Type::O);
+    test.setPiece(0,0,Type::O);
+    test.setPiece(1,1,Type::O);
+    test.setPiece(2,2,Type::O);
     return test;
 }
 
@@ -97,9 +183,9 @@ Grille testGrille () {
     for (int i = 0 ; i < 3 ; i++) {
         for ( int j = 0 ; j < 3 ; j++) {
             switch(distrib(gen)) {
-                case 0 : test.setInt(i,j,Type::None); break;
-                case 1 : test.setInt(i,j,Type::O); break;
-                case 2 : test.setInt(i,j,Type::X); break;
+                case 0 : test.setPiece(i,j,Type::None); break;
+                case 1 : test.setPiece(i,j,Type::O); break;
+                case 2 : test.setPiece(i,j,Type::X); break;
             }
         }
     }

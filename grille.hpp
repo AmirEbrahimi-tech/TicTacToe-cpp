@@ -13,9 +13,14 @@ class Grille {
 
         Grille ();
         void affichage ();
-        void setInt (int lig, int col, Type t);
+        void setPiece (int row, int col, Type t);
+        Piece getPiece (int row, int col);
+        int numPiece (Type t);
+        void setAllPieces ();
         void input ();
         bool partieFinie ();
+        void setOneRandomPiece (Type t);
+        void getStatus ();
 
     private :
 
