@@ -110,8 +110,8 @@ int main () {
     test.getStatus();
     int i = 0;
     do {
-        if (i % 2 == 0) test.setOneRandomPiece(Type::O);
-        else test.setOneRandomPiece(Type::X);
+        if (i % 2 == 0) test.input(Type::O);
+        else test.input(Type::X);
         test.setAllPieces ();
         test.affichage();
         test.getStatus();

@@ -56,17 +56,13 @@ void Grille::setAllPieces () {
     }
 }
 
-void Grille::input () {
-    int row, col, val;
+void Grille::input (Type t) {
+    int emp;
     cout << "entrez l'emplacement" << endl;
-    cin >> row >> col;
-    cout << "entrez un entier entre 1 et 2" << endl;
-    cin >> val;
-    switch (val) {
-        case 0 : grille[row][col].setType(Type::None); break;
-        case 1 : grille[row][col].setType(Type::O); break;
-        case 2 : grille[row][col].setType(Type::X); break;
-    }
+    cin >> emp;
+    int row = (emp - 1) / 3;
+    int col = (emp - 1) % 3;
+    setPiece(row, col, t);
 }
 
 bool Grille::partieFinie () {

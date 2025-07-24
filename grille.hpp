@@ -17,7 +17,7 @@ class Grille {
         Piece getPiece (int row, int col);
         int numPiece (Type t);
         void setAllPieces ();
-        void input ();
+        void input (Type t);
         bool partieFinie ();
         void setOneRandomPiece (Type t);
         void getStatus ();

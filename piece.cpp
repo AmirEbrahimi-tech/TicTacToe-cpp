@@ -25,9 +25,9 @@ void Piece::loseAge () {
 }
 
 bool Piece::operator==(Piece& p) const {
-    return _type == p.getType();
+    return (_type == p.getType() && _type != Type::None);
 }
 
 bool Piece::operator!=(Piece& p) const {
-    return _type != p.getType();
+    return !(*this == p);
 }
