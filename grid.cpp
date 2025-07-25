@@ -35,7 +35,7 @@ void Grid::display() {
 
 void Grid::setPiece(int row, int col, Type t) {
     getPiece(row,col).setType(t);
-    getPiece(row,col).setAge(8);
+    getPiece(row,col).setAge(7);
 }
 
 Piece& Grid::getPiece(int row, int col) {
