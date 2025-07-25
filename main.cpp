@@ -1,6 +1,6 @@
 #define DOCTEST_CONFIG_IMPLEMENT
 #include "doctest.h"
-#include "grille.hpp"
+#include "grid.hpp"
 
 int main () {
     // First test
@@ -67,10 +67,28 @@ int main () {
 
     // Fourth test
 
+    // Grid test;
+    // test.display();
+    // // test.getStatus();
+    // int i = 0;
+    // do {
+    //     if (i % 2 == 0) test.input(Type::O);
+    //     else test.input(Type::X);
+    //     test.setAllPieces();
+    //     test.display();
+    //     // test.getStatus();
+    //     i++;
+    // } while (!test.gameFinished());
+    // cout << "took " << i << " rounds" << endl;
+    // cout << "DONE!" << endl;
+
+    // Fifth test
+
     Grid test;
     test.display();
     // test.getStatus();
     int i = 0;
+    Type winner;
     do {
         if (i % 2 == 0) test.input(Type::O);
         else test.input(Type::X);
@@ -78,10 +96,9 @@ int main () {
         test.display();
         // test.getStatus();
         i++;
-    } while (!test.gameFinished());
+    } while (!test.gameFinished(winner));
     cout << "took " << i << " rounds" << endl;
-    cout << "DONE!" << endl;
-
+    winAnounce(winner);
     return 0;
 }
 

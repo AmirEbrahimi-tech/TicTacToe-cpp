@@ -18,7 +18,7 @@ class Grid {
         int numPiece(Type t);
         void setAllPieces();
         void input(Type t);
-        bool gameFinished();
+        bool gameFinished(Type& winner);
         void setOneRandomPiece(Type t);
         void getStatus();
 
@@ -27,6 +27,8 @@ class Grid {
         // vector<vector<int>> grid;
         Piece grid[3][3];
 };
+
+void winAnounce(Type t);
 
 Grid testGridWinningRow();
 

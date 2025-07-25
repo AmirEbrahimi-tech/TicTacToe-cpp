@@ -72,10 +72,15 @@ void Grid::input(Type t) {
     setPiece(row, col, t);
 }
 
-bool Grid::gameFinished() {
+bool Grid::gameFinished(Type& winner) {
     // Diagonal
-    if (grid[0][0] == grid[1][1] && grid[1][1] == grid[2][2]) return true;
-    else if (grid[2][0] == grid[1][1] && grid[1][1] == grid[0][2]) return true;
+    if (grid[0][0] == grid[1][1] && grid[1][1] == grid[2][2]) {
+        winner = getPiece(1,1).getType();
+        return true;
+    } else if (grid[2][0] == grid[1][1] && grid[1][1] == grid[0][2]) {
+        winner = getPiece(1,1).getType();
+        return true;
+    }
     // Rows and columns
     int ind = 0;
     for (int i = 0; i < 3; i++) {
@@ -85,8 +90,13 @@ bool Grid::gameFinished() {
                 ind++;
                 continue;
             }
-            if (grid[i][0] == grid[i][1] && grid[i][1] == grid[i][2]) return true;
-            else if (grid[0][j] == grid[1][j] && grid[1][j] == grid[2][j]) return true;
+            if (grid[i][0] == grid[i][1] && grid[i][1] == grid[i][2]) {
+                winner = getPiece(i,1).getType();
+                return true;
+            } else if (grid[0][j] == grid[1][j] && grid[1][j] == grid[2][j]) {
+                winner = getPiece(1,j).getType();
+                return true;
+            }
         }
     }
     return false;
@@ -122,6 +132,15 @@ void Grid::getStatus() {
             }
             cout << " age : " << grid[i][j].getAge() << endl;
         }
+    }
+}
+
+void winAnounce (Type t) {
+    cout << "The Winner is ";
+    switch (t) {
+        case Type::O : cout << "\033[1;31mRED\033[0m!" << endl; break;
+        case Type::X : cout << "\033[1;34mBLUE\033[0m!" << endl; break;
+        default : cout << "Oops! Something Went \033[1;31mWrong\033[0m!" << endl; break;
     }
 }
 
