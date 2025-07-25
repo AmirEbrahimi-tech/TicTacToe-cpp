@@ -58,10 +58,19 @@ void Grille::setAllPieces () {
 
 void Grille::input (Type t) {
     int emp;
-    cout << "entrez l'emplacement" << endl;
+    cout << "Where do you want to put it?" << endl;
     cin >> emp;
     int row = (emp - 1) / 3;
     int col = (emp - 1) % 3;
+    if (getPiece(row, col).getType() != Type::None) {
+        while (true) {
+            cout << "Oops! Choose a \033[1;31mnon-occupied \033[0mplace!" << endl;
+            cin >> emp;
+            row = (emp - 1) / 3;
+            col = (emp - 1) % 3;
+            if (getPiece(row, col).getType() == Type::None) break;
+        }
+    }
     setPiece(row, col, t);
 }
 
