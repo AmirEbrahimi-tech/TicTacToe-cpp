@@ -30,6 +30,8 @@ class Grid {
 
 void winAnounce(Type t);
 
+int distribTurn();
+
 Grid testGridWinningRow();
 
 Grid testGridWinningColumn();

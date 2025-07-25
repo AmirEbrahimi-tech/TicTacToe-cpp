@@ -144,6 +144,27 @@ void winAnounce (Type t) {
     }
 }
 
+int distribTurn() {
+    cout << "Choose the \033[1;33mfirst player\033[0m's Color :)" << endl;
+    cout << "0 : \033[1;31mO\033[0m (\033[4;31mRED\033[0m)" << endl;
+    cout << "1 : \033[1;34mX\033[0m (\033[4;34mBLUE\033[0m)" << endl;
+    int n;
+    cin >> n;
+    while (n != 0 && n != 1) {
+        cout << "HOW DARE YOU??..." <<endl;
+        cout << "This is just a basic sample of the game" << endl;
+        cout << "Chill Dude :) .. Just choose \033[1;33m0\033[0m or \033[1;33m1\033[0m" << endl;
+        cin >> n;
+    }
+    cout << "Great!\n So :" << endl;
+    if (n==0) {
+        cout << "\033[1;31mRed\033[0m is the first to play and\n\033[1;34mBlue\033[0m is the second!\n Here We Go" << endl;
+    } else {
+        cout << "\033[1;34mBlue\033[0m is the first to play and\n\033[1;31mRed\033[0m is the second!\n Here We Go" << endl;
+    }
+    return n;
+}
+
 Grid testGridWinningRow() {
     Grid test;
     test.setPiece(0, 0, Type::O);

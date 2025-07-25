@@ -85,9 +85,10 @@ int main () {
     // Fifth test
 
     Grid test;
+    int i = distribTurn();
     test.display();
     // test.getStatus();
-    int i = 0;
+    int counter = 0;
     Type winner;
     do {
         if (i % 2 == 0) test.input(Type::O);
@@ -96,8 +97,9 @@ int main () {
         test.display();
         // test.getStatus();
         i++;
+        counter++;
     } while (!test.gameFinished(winner));
-    cout << "took " << i << " rounds" << endl;
+    cout << "took " << counter << " rounds" << endl;
     winAnounce(winner);
     return 0;
 }
