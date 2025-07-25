@@ -6,7 +6,7 @@ using namespace std;
 Grid::Grid() {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            grid[i][j] = Piece();
+            getPiece(i,j) = Piece();
         }
     }
 }
@@ -15,10 +15,17 @@ void Grid::display() {
     for (int i = 0; i < 3; i++) {
         cout << "-------------" << endl;
         for (int j = 0; j < 3; j++) {
-            switch (grid[i][j].getType()) {
+            Piece tmpPiece = getPiece(i,j);
+            switch (tmpPiece.getType()) {
                 case Type::None: cout << "| " << i * 3 + j + 1 << " "; break;
-                case Type::O: cout << "|\033[1;31m O \033[0m"; break;
-                case Type::X: cout << "|\033[1;34m X \033[0m"; break;
+                case Type::O: {
+                    if (tmpPiece.getAge() == 1) {cout << "|\033[1;35m O \033[0m"; break;}
+                    cout << "|\033[1;31m O \033[0m"; break;
+                }
+                case Type::X: {
+                    if (tmpPiece.getAge() == 1) {cout << "|\033[1;36m X \033[0m"; break;}
+                    cout << "|\033[1;34m X \033[0m"; break;
+                }
             }
         }
         cout << "|" << endl;
@@ -27,11 +34,11 @@ void Grid::display() {
 }
 
 void Grid::setPiece(int row, int col, Type t) {
-    grid[row][col].setType(t);
-    grid[row][col].setAge(8);
+    getPiece(row,col).setType(t);
+    getPiece(row,col).setAge(8);
 }
 
-Piece Grid::getPiece(int row, int col) {
+Piece& Grid::getPiece(int row, int col) {
     return grid[row][col];
 }
 
@@ -39,7 +46,7 @@ int Grid::numPiece(Type t) {
     int counter = 0;
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            if (grid[i][j].getType() == t) counter++;
+            if (getPiece(i,j).getType() == t) counter++;
         }
     }
     return counter;
@@ -48,21 +55,31 @@ int Grid::numPiece(Type t) {
 void Grid::setAllPieces() {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            if (grid[i][j].getAge() == 0) continue;
-            else grid[i][j].loseAge();
+            if (getPiece(i,j).getAge() == 0) continue;
+            else getPiece(i,j).loseAge();
         }
     }
 }
 
-void Grid::input(Type t) {
+void Grid::input(Type t, int turn) {
+
+    if (turn % 2 == 0) cout << "\033[4;31mRed\033[0m,it's your turn. \n\033[1;31mGO!\033[0m" << endl;
+    else cout << "\033[4;34mBlue\033[0m,it's your turn. \n\033[1;34mGO!\033[0m" << endl;
     int pos;
-    cout << "Where do you want to put it?" << endl;
+    cout << "Where do you want to place it?" << endl;
     cin >> pos;
     int row = (pos - 1) / 3;
     int col = (pos - 1) % 3;
+    if (pos < 1 || pos > 9) {
+        while (true) {
+            cout << "Choose one between 1 - 9." <<endl;
+            cin >> pos;
+            if (pos > 0 && pos < 10) break;
+        }
+    }
     if (getPiece(row, col).getType() != Type::None) {
         while (true) {
-            cout << "Oops! Choose a \033[1;31mnon-occupied \033[0mplace!" << endl;
+            cout << "Oops! Choose a \033[1;33mnon-occupied \033[0mplace!" << endl;
             cin >> pos;
             row = (pos - 1) / 3;
             col = (pos - 1) % 3;
@@ -86,7 +103,7 @@ bool Grid::gameFinished(Type& winner) {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             if (ind > i || ind > j) continue;
-            if (grid[i][j].getType() == Type::None) {
+            if (getPiece(i,j).getType() == Type::None) {
                 ind++;
                 continue;
             }
@@ -112,7 +129,7 @@ void Grid::setOneRandomPiece(Type t) {
         int tmpCase = distrib(gen);
         int row = tmpCase / 3;
         int col = tmpCase % 3;
-        if (grid[row][col].getType() != Type::None) {
+        if (getPiece(row,col).getType() != Type::None) {
             continue;
         } else {
             setPiece(row, col, t);
@@ -125,12 +142,12 @@ void Grid::getStatus() {
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             cout << "cell " << i << " - " << j << " : ";
-            switch (grid[i][j].getType()) {
+            switch (getPiece(i,j).getType()) {
                 case Type::None: cout << "None"; break;
                 case Type::O: cout << "O"; break;
                 case Type::X: cout << "X"; break;
             }
-            cout << " age : " << grid[i][j].getAge() << endl;
+            cout << " age : " << getPiece(i,j).getAge() << endl;
         }
     }
 }

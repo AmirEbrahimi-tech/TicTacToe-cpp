@@ -14,10 +14,10 @@ class Grid {
         Grid();
         void display();
         void setPiece(int row, int col, Type t);
-        Piece getPiece(int row, int col);
+        Piece& getPiece(int row, int col);
         int numPiece(Type t);
         void setAllPieces();
-        void input(Type t);
+        void input(Type t, int turn);
         bool gameFinished(Type& winner);
         void setOneRandomPiece(Type t);
         void getStatus();
