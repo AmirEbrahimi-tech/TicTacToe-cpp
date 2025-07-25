@@ -1,3 +1,90 @@
+#define DOCTEST_CONFIG_IMPLEMENT
+#include "doctest.h"
+#include "grille.hpp"
+
+int main () {
+    // First test
+
+    // Grid test;
+    // test.input();
+    // test.input();
+    // test.input();
+
+    // test.display();
+
+    // Second test
+
+    // Grid test1 = testGridWinningRow();
+    // Grid test2 = testGridWinningColumn();
+    // Grid test3 = testGridWinningDiagonal();
+    // Grid test4 = testGrid();
+    // Grid test5 = testGrid();
+    // Grid test6 = testGrid();
+    // Grid test7 = testGrid();
+    // Grid test8 = testGrid();
+
+    // test1.display();
+    // test2.display();
+    // test3.display();
+    // test4.display();
+    // test5.display();
+    // test6.display();
+    // test7.display();
+    // test8.display();
+    // if (test1.gameFinished()) cout << "yay" << endl;
+    // else cout << "nay" << endl;
+    // if (test2.gameFinished()) cout << "yay" << endl;
+    // else cout << "nay" << endl;
+    // if (test3.gameFinished()) cout << "yay" << endl;
+    // else cout << "nay" << endl;
+    // if (test4.gameFinished()) cout << "yay" << endl;
+    // else cout << "nay" << endl;
+    // if (test5.gameFinished()) cout << "yay" << endl;
+    // else cout << "nay" << endl;
+    // if (test6.gameFinished()) cout << "yay" << endl;
+    // else cout << "nay" << endl;
+    // if (test7.gameFinished()) cout << "yay" << endl;
+    // else cout << "nay" << endl;
+    // if (test8.gameFinished()) cout << "yay" << endl;
+    // else cout << "nay" << endl;
+
+    // Third test
+
+    // Grid test;
+    // test.display();
+    // test.getStatus();
+    // int i = 0;
+    // do {
+    //     if (i % 2 == 0) test.setOneRandomPiece(Type::O);
+    //     else test.setOneRandomPiece(Type::X);
+    //     test.display();
+    //     test.getStatus();
+    //     i++;
+    //     test.setAllPieces();
+    // } while (!test.gameFinished());
+    // cout << "took " << i << " rounds" << endl;
+    // cout << "DONE!" << endl;
+
+    // Fourth test
+
+    Grid test;
+    test.display();
+    // test.getStatus();
+    int i = 0;
+    do {
+        if (i % 2 == 0) test.input(Type::O);
+        else test.input(Type::X);
+        test.setAllPieces();
+        test.display();
+        // test.getStatus();
+        i++;
+    } while (!test.gameFinished());
+    cout << "took " << i << " rounds" << endl;
+    cout << "DONE!" << endl;
+
+    return 0;
+}
+
 
 
 // int main() {
@@ -35,91 +122,3 @@
 
 //     return 0;
 // }
-#define DOCTEST_CONFIG_IMPLEMENT
-#include "doctest.h"
-#include "grille.hpp"
-
-
-int main () {
-    // first test
-
-    // Grille test;
-    // test.input();
-    // test.input();
-    // test.input();
-
-    // test.affichage();
-
-    // second test
-
-    // Grille test1 = testGrilleGagnantLigne();
-    // Grille test2 = testGrilleGagnantColonne();
-    // Grille test3 = testGrilleGagnantDiagonale();
-    // Grille test4 = testGrille();
-    // Grille test5 = testGrille();
-    // Grille test6 = testGrille();
-    // Grille test7 = testGrille();
-    // Grille test8 = testGrille();
-
-    // test1.affichage();
-    // test2.affichage();
-    // test3.affichage();
-    // test4.affichage();
-    // test5.affichage();
-    // test6.affichage();
-    // test7.affichage();
-    // test8.affichage();
-    // if (test1.partieFinie()) cout << "yay" << endl;
-    // else cout << "nay" << endl;
-    // if (test2.partieFinie()) cout << "yay" << endl;
-    // else cout << "nay" << endl;
-    // if (test3.partieFinie()) cout << "yay" << endl;
-    // else cout << "nay" << endl;
-    // if (test4.partieFinie()) cout << "yay" << endl;
-    // else cout << "nay" << endl;
-    // if (test5.partieFinie()) cout << "yay" << endl;
-    // else cout << "nay" << endl;
-    // if (test6.partieFinie()) cout << "yay" << endl;
-    // else cout << "nay" << endl;
-    // if (test7.partieFinie()) cout << "yay" << endl;
-    // else cout << "nay" << endl;
-    // if (test8.partieFinie()) cout << "yay" << endl;
-    // else cout << "nay" << endl;
-
-    // third test
-
-    // Grille test;
-    // test.affichage();
-    // test.getStatus();
-    // int i = 0;
-    // do {
-    //     if (i % 2 == 0) test.setOneRandomPiece(Type::O);
-    //     else test.setOneRandomPiece(Type::X);
-    //     test.affichage();
-    //     test.getStatus();
-    //     i++;
-    //     test.setAllPieces ();
-    // } while (!test.partieFinie());
-    // cout << "took " << i << " rounds" << endl;
-    // cout << "DONE!" << endl;
-
-    // fourth test
-
-    Grille test;
-    test.affichage();
-    test.getStatus();
-    int i = 0;
-    do {
-        if (i % 2 == 0) test.input(Type::O);
-        else test.input(Type::X);
-        test.setAllPieces ();
-        test.affichage();
-        test.getStatus();
-        i++;
-    } while (!test.partieFinie());
-    cout << "took " << i << " rounds" << endl;
-    cout << "DONE!" << endl;
-    
-
-    return 0;
-}

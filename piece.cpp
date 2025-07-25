@@ -1,27 +1,26 @@
 #include "piece.hpp"
 
-Piece::Piece () : _type{Type::None}, age{0} {}
+Piece::Piece() : _type{Type::None}, age{0} {}
 
-Type Piece::getType () {
+Type Piece::getType() {
     return _type;
 }
 
-void Piece::setType (Type t) {
+void Piece::setType(Type t) {
     _type = t;
 }
 
-int Piece::getAge () {
+int Piece::getAge() {
     return age;
 }
 
-void Piece::setAge (int n) {
+void Piece::setAge(int n) {
     age = n;
 }
 
-void Piece::loseAge () {
+void Piece::loseAge() {
     if (age != 0) age--;
-    if (age == 0) (*this).setType(Type::None);
-    // else throw range_error ("The piece's existance's age is out of range!");
+    if (age == 0) this->setType(Type::None);
 }
 
 bool Piece::operator==(Piece& p) const {
